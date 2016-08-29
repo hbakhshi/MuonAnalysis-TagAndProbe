@@ -85,7 +85,7 @@ class TnPMCDataPlots :
         self.MC.SetLineColor( kBlue )
         self.MC.SetMarkerColor( kBlue )
         self.MC.SetFillColor( kWhite )
-        self.MC.SetTitle( "MC (amcatnloFXFX)" )
+        self.MC.SetTitle( "MC (madgraphMLM)" )
 
         vals = [self.MC.GetY()[i] for i in range(0, self.MC.GetN() ) ]
         
@@ -175,6 +175,7 @@ class TnPMCDataPlots :
 
         if save :
             self.Canvas.SaveAs( self.OutDir + "/" + self.Canvas.GetName()+FileNameExtention()+".png")
+            self.Canvas.Write() 
 
 
 class TnPCompPlots :
@@ -263,6 +264,9 @@ if plot2D :
     h2d.SetStats(0)
 
 import re
+
+outfile = TFile.Open( "%s/%s_%s.root" % (outdir , option___.catname , FileNameExtention()) , "RECREATE" )
+
 for eff in plotter.AllEffPlots :
     plotter.AllEffPlots[ eff ].Plot(True)
     if not plot2D :
@@ -287,6 +291,7 @@ c = None
 if plot2D :
     c = TCanvas()
     h2d.Draw("COLZ TEXT")
-    h2d.SaveAs("%s/%s_%s_2d.root" % (outdir , option___.catname , FileNameExtention() ) )
+    h2d.Write()
     c.SaveAs("%s/%s_%s_2d.png" % (outdir , option___.catname , FileNameExtention() ) )
 
+outfile.Close()

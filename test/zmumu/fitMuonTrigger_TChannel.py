@@ -132,14 +132,36 @@ process.TnP_Muon_Trigger_Data = cms.EDAnalyzer("TagProbeFitTreeAnalyzer",
 
 
 AllEfficiencies = {
-    ('trigger_vs_njets', True ):
+    ('trigger_vs_njets01_234inf_allpairs', True ):
         cms.PSet(  
         UnbinnedVariables = cms.vstring("mass"),
         EfficiencyCategoryAndState = cms.vstring(options.cutname , 'above'), 
         BinnedVariables = cms.PSet(
-            pair_nJets30 = cms.vdouble( -0.5 , 0.5 , 1.5 , 2.5 , 3.5 , 4.5 , 5.5 , 6.5 , 7.5 , 30 ),
+            pair_nJets30 = cms.vdouble( -0.5 , 1.5 , 2.5 , 3.5 , 30 ),
             pt     = cms.vdouble( 22,  120 ),
-            eta = cms.vdouble( -2.1 ,  2.1 ),
+            eta = cms.vdouble( -2.4 ,  2.4 ),
+            Tight2012 = cms.vstring("pass"),
+            combRelIsoPF04dBeta = cms.vdouble( -0.5 , options.isolation ),
+            dzPV = cms.vdouble( -0.5 , 0.5 ),
+
+            tag_IsoMu20 = cms.vstring("pass"),
+            tag_Tight2012 = cms.vstring("pass"),
+            tag_pt = cms.vdouble( 22 , 1000 ),
+            
+            #pair_probeMultiplicity = cms.vdouble( 0.5 , 1.5 ),
+
+            run = runrange
+            ),
+        BinToPDFmap = cms.vstring("vpvPlusExpo"), ## PDF to use, as defined below
+        ),
+    ('trigger_vs_njets01_2inf', False ):
+        cms.PSet(  
+        UnbinnedVariables = cms.vstring("mass"),
+        EfficiencyCategoryAndState = cms.vstring(options.cutname , 'above'), 
+        BinnedVariables = cms.PSet(
+            pair_nJets30 = cms.vdouble( -0.5 , 1.5 , 30 ),
+            pt     = cms.vdouble( 22,  120 ),
+            eta = cms.vdouble( -2.4 ,  2.4 ),
             Tight2012 = cms.vstring("pass"),
             combRelIsoPF04dBeta = cms.vdouble( -0.5 , options.isolation ),
             dzPV = cms.vdouble( -0.5 , 0.5 ),
@@ -154,7 +176,73 @@ AllEfficiencies = {
             ),
         BinToPDFmap = cms.vstring("vpvPlusExpo"), ## PDF to use, as defined below
         ),
-    ('trigger_vs_eta',True):
+    ('trigger_vs_njets01_23inf', False ):
+        cms.PSet(  
+        UnbinnedVariables = cms.vstring("mass"),
+        EfficiencyCategoryAndState = cms.vstring(options.cutname , 'above'), 
+        BinnedVariables = cms.PSet(
+            pair_nJets30 = cms.vdouble( -0.5 , 1.5 , 2.5 , 30 ),
+            pt     = cms.vdouble( 22,  120 ),
+            eta = cms.vdouble( -2.4 ,  2.4 ),
+            Tight2012 = cms.vstring("pass"),
+            combRelIsoPF04dBeta = cms.vdouble( -0.5 , options.isolation ),
+            dzPV = cms.vdouble( -0.5 , 0.5 ),
+
+            tag_IsoMu20 = cms.vstring("pass"),
+            tag_Tight2012 = cms.vstring("pass"),
+            tag_pt = cms.vdouble( 22 , 1000 ),
+            
+            pair_probeMultiplicity = cms.vdouble( 0.5 , 1.5 ),
+
+            run = runrange
+            ),
+        BinToPDFmap = cms.vstring("vpvPlusExpo"), ## PDF to use, as defined below
+        ),
+    ('trigger_vs_njets01_234inf', False ):
+        cms.PSet(  
+        UnbinnedVariables = cms.vstring("mass"),
+        EfficiencyCategoryAndState = cms.vstring(options.cutname , 'above'), 
+        BinnedVariables = cms.PSet(
+            pair_nJets30 = cms.vdouble( -0.5 , 1.5 , 2.5 , 3.5 , 30 ),
+            pt     = cms.vdouble( 22,  120 ),
+            eta = cms.vdouble( -2.4 ,  2.4 ),
+            Tight2012 = cms.vstring("pass"),
+            combRelIsoPF04dBeta = cms.vdouble( -0.5 , options.isolation ),
+            dzPV = cms.vdouble( -0.5 , 0.5 ),
+
+            tag_IsoMu20 = cms.vstring("pass"),
+            tag_Tight2012 = cms.vstring("pass"),
+            tag_pt = cms.vdouble( 22 , 1000 ),
+            
+            pair_probeMultiplicity = cms.vdouble( 0.5 , 1.5 ),
+
+            run = runrange
+            ),
+        BinToPDFmap = cms.vstring("vpvPlusExpo"), ## PDF to use, as defined below
+        ),
+    ('trigger_vs_njets', False ):
+        cms.PSet(  
+        UnbinnedVariables = cms.vstring("mass"),
+        EfficiencyCategoryAndState = cms.vstring(options.cutname , 'above'), 
+        BinnedVariables = cms.PSet(
+            pair_nJets30 = cms.vdouble( -0.5 , 0.5 , 1.5 , 2.5 , 3.5 , 4.5 , 5.5 , 6.5 , 7.5 , 30 ),
+            pt     = cms.vdouble( 22,  120 ),
+            eta = cms.vdouble( -2.4 ,  2.4 ),
+            Tight2012 = cms.vstring("pass"),
+            combRelIsoPF04dBeta = cms.vdouble( -0.5 , options.isolation ),
+            dzPV = cms.vdouble( -0.5 , 0.5 ),
+
+            tag_IsoMu20 = cms.vstring("pass"),
+            tag_Tight2012 = cms.vstring("pass"),
+            tag_pt = cms.vdouble( 22 , 1000 ),
+            
+            pair_probeMultiplicity = cms.vdouble( 0.5 , 1.5 ),
+
+            run = runrange
+            ),
+        BinToPDFmap = cms.vstring("vpvPlusExpo"), ## PDF to use, as defined below
+        ),
+    ('trigger_vs_eta',False):
         cms.PSet(  #plot page 14 , upper left
         UnbinnedVariables = cms.vstring("mass"),
         EfficiencyCategoryAndState = cms.vstring(options.cutname , 'above'), ## variable is below cut value 
@@ -175,7 +263,28 @@ AllEfficiencies = {
             ),
         BinToPDFmap = cms.vstring("vpvPlusExpo"), ## PDF to use, as defined below
         ),
-    ('trigger_vs_nVertices',True) :
+    ('trigger_vs_nprobes',False):
+        cms.PSet(  #plot page 14 , upper left
+        UnbinnedVariables = cms.vstring("mass"),
+        EfficiencyCategoryAndState = cms.vstring(options.cutname , 'above'), ## variable is below cut value 
+        BinnedVariables = cms.PSet(
+            pt     = cms.vdouble( 22,  120 ),
+            eta = cms.vdouble( -2.4 , 2.4 ),
+            Tight2012 = cms.vstring("pass"),
+            combRelIsoPF04dBeta = cms.vdouble( -0.5 , options.isolation ),
+            dzPV = cms.vdouble( -0.5 , 0.5 ),
+
+            tag_IsoMu20 = cms.vstring("pass"),
+            tag_Tight2012 = cms.vstring("pass"),
+            tag_pt = cms.vdouble( 22 , 1000 ),
+            
+            pair_probeMultiplicity = cms.vdouble( 0.0 , 0.5 , 1.5 , 2.5 , 3.5 , 4.5, 5.5 , 6.5 ),
+
+            run = runrange
+            ),
+        BinToPDFmap = cms.vstring("vpvPlusExpo"), ## PDF to use, as defined below
+        ),
+    ('trigger_vs_nVertices',False) :
         cms.PSet(  #plot page 14 , lower left
         UnbinnedVariables = cms.vstring("mass"),
         EfficiencyCategoryAndState = cms.vstring(options.cutname , 'above'), ## variable is below cut value 
@@ -197,7 +306,7 @@ AllEfficiencies = {
             ),
         BinToPDFmap = cms.vstring("vpvPlusExpo"), ## PDF to use, as defined below
         ),
-    ('trigger_vs_pt',True) :
+    ('trigger_vs_pt',False) :
         cms.PSet(  #plot page 14 , right
         UnbinnedVariables = cms.vstring("mass"),
         EfficiencyCategoryAndState = cms.vstring(options.cutname , 'above'), ## variable is below cut value 
@@ -218,7 +327,7 @@ AllEfficiencies = {
             ),
         BinToPDFmap = cms.vstring("vpvPlusExpo"), ## PDF to use, as defined below
         ),
-    ('trigger_vs_pt_0abseta9',True):
+    ('trigger_vs_pt_0abseta9',False):
         cms.PSet(  #plot page 14 , right
         UnbinnedVariables = cms.vstring("mass"),
         EfficiencyCategoryAndState = cms.vstring(options.cutname , 'above'), ## variable is below cut value 
@@ -239,7 +348,7 @@ AllEfficiencies = {
             ),
         BinToPDFmap = cms.vstring("vpvPlusExpo"), ## PDF to use, as defined below
         ),
-    ('trigger_vs_pt_9abseta12',True):
+    ('trigger_vs_pt_9abseta12',False):
         cms.PSet(  #plot page 14 , right
         UnbinnedVariables = cms.vstring("mass"),
         EfficiencyCategoryAndState = cms.vstring(options.cutname , 'above'), ## variable is below cut value 
@@ -260,7 +369,7 @@ AllEfficiencies = {
             ),
         BinToPDFmap = cms.vstring("vpvPlusExpo"), ## PDF to use, as defined below
         ),
-    ('trigger_vs_pt_12abseta21',True):
+    ('trigger_vs_pt_12abseta21',False):
         cms.PSet(  #plot page 14 , right
         UnbinnedVariables = cms.vstring("mass"),
         EfficiencyCategoryAndState = cms.vstring(options.cutname , 'above'), ## variable is below cut value 
@@ -281,7 +390,7 @@ AllEfficiencies = {
             ),
         BinToPDFmap = cms.vstring("vpvPlusExpo"), ## PDF to use, as defined below
         ),
-    ('trigger_vs_pt_21abseta24',True):
+    ('trigger_vs_pt_21abseta24',False):
         cms.PSet(  #plot page 14 , right
         UnbinnedVariables = cms.vstring("mass"),
         EfficiencyCategoryAndState = cms.vstring(options.cutname , 'above'), ## variable is below cut value 

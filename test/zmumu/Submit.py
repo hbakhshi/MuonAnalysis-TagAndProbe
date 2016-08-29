@@ -8,7 +8,7 @@ import glob
 
 
 
-cpVersion = "V2"
+cpVersion = "V4"
 FarmDirectory = "TnP_"+cpVersion
 JobName = "Fit_"+cpVersion
 
@@ -52,6 +52,8 @@ if not os.path.isdir( "./" +  FarmDirectory + "/outputs/Iso/15/Data"):
 
 from fitMuonIso_TChannel_MC import AllEfficiencies as isoEffs 
 for (eff,plotit) in isoEffs:
+    if not plotit:
+        continue
     print 'adding isolation jobs for %s' % (eff)
     LaunchOnCondor.SendCluster_Push(["BASH", "cmsRun fitMuonIso_TChannel_MC.py cutname=PFIsoTight tightid=False tagtight=False efficiencies=%s outdir=%s" % (eff ,  "./" +  FarmDirectory + "/outputs/Iso/15/MC/" ) ])
     LaunchOnCondor.SendCluster_Push(["BASH", "cmsRun fitMuonIso_TChannel.py cutname=PFIsoTight tightid=False tagtight=False efficiencies=%s outdir=%s" % (eff ,  "./" +  FarmDirectory + "/outputs/Iso/15/Data/") ])
@@ -60,6 +62,8 @@ for (eff,plotit) in isoEffs:
 
 from fitMuonTrigger_TChannel_MC import AllEfficiencies as trgEffs
 for (eff,plotit) in trgEffs:
+    if not plotit:
+        continue
     print 'adding trigger jobs for %s' % (eff)
     LaunchOnCondor.SendCluster_Push(["BASH", "cmsRun fitMuonTrigger_TChannel_MC.py cutname=IsoMu20OrIsoTkMu20 efficiencies=%s  outdir=%s" % (eff,  "./" +  FarmDirectory + "/outputs/Trigger/15/MC/") ] )
     LaunchOnCondor.SendCluster_Push(["BASH", "cmsRun fitMuonTrigger_TChannel.py cutname=IsoMu20OrIsoTkMu20 efficiencies=%s  outdir=%s" % (eff,  "./" +  FarmDirectory + "/outputs/Trigger/15/Data0/") ])
